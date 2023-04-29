@@ -1,0 +1,17 @@
+<h1 align="center">Liste des Projets</h1><hr>
+<table border="10" class="display table table-bordered" id="hidden-table-info">
+
+    <tr>
+        <td style="color:red"> Titre </td>
+        <td style="color:red"> Prix </td>
+
+    </tr>
+    {% for i in showProjets %}
+        <tr>
+            <td>{{ i.titreprojet }}</td>
+            <td>{{ i.prixprojet }}</td>
+
+        </tr>
+
+    {% endfor %}
+</table>

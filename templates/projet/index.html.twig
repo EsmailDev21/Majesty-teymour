@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+    .center {
+    text-align: center;
+}
+
+.table-center {
+    margin: 0 auto;
+}
+
+    </style>
+    {% endblock %}
+
+{% block title %}Projet index{% endblock %}
+
+{% block body %}
+ {% include 'backandfront/Front/navbar.html.twig' %}
+    <h1 style="text-align: center;">Projects</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titreprojet</th>
+                <th>Prixprojet</th>
+                <th>Category</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for projet in projets %}
+            <tr>
+                <td>{{ projet.titreprojet }}</td>
+                <td>{{ projet.prixprojet }}</td>
+                <td>{{ projet.category_id }}</td>
+                <td>
+                    <a href="{{ path('app_projet_show', {'idprojet': projet.idprojet}) }}">show</a>
+                    <a href="{{ path('app_projet_edit', {'idprojet': projet.idprojet}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_projet_new') }}">Create new</a>
+    <td>
+        <a href="{{ path('PDFProjet') }}" class="btn-group btn-group-xs">
+            <i class="fa fa-print">
+                IMPRIMER LA LISTE DES Projets
+            </i>
+        </a>
+    </td>
+    {% include 'backandfront/Front/footer.html.twig' %}
+    
+       
+{% endblock %}
+
+

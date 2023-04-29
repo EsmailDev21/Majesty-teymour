@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projet{% endblock %}
+
+{% block body %}
+{% include 'backandfront/Front/navbar.html.twig' %}
+    <h1>Projet</h1>
+<a href="showProjet">
+
+</a>
+ <form action="{{ path('showProjet') }}" method="get">
+        <label for="name">Titre:</label>
+        <input type="text" id="name" name="titeprojet" value="{{ app.request.query.get('titreProjet') }}">
+        <button type="submit">Search</button>
+    </form>
+<ul class="nav pull-right top-menu">
+    <table class="table">
+        <tbody>
+        {% for res in result %}
+            <tr>
+                <th>Idprojet</th>
+                <td>{{ res.idprojet }}</td>
+            </tr>
+            <tr>
+                <th>Titreprojet</th>
+                <td>{{ res.titreprojet }}</td>
+            </tr>
+            <tr>
+                <th>Prixprojet</th>
+                <td>{{ res.prixprojet }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ res.category }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_projet_index') }}">back to list</a>
+
+    <a href="{{ path('app_projet_edit', {'idprojet': projet.idprojet}) }}">edit</a>
+
+    {{ include('projet/_delete_form.html.twig') }}
+    {% include 'backandfront/Front/footer.html.twig' %}
+{% endblock %}

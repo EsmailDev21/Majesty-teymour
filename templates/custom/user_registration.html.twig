@@ -1,0 +1,208 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+        <style>
+        
+  body {
+             font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom, #00FFFF 0%, #FFFFFF 100%);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+/* Center the form on the page */
+form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Reduce the width of the input fields and select dropdown */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  display: block;
+  width: 100%;
+  max-width: 300px; /* Change the maximum width to your desired value */
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s;
+}
+
+/* Reduce the size of the button */
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  max-width: 300px; /* Change the maximum width to your desired value */
+  padding: 8px;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 14px;
+}
+
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+input[type="file"] {
+  display: block;
+  margin-top: 10px;
+}
+
+
+
+button[type="submit"]:hover {
+  background-color: #0069d9;
+}
+input[type="radio"] {
+  display: inline-block;
+  margin-right: 10px;
+}
+img {
+  float: right;
+  max-width: 200px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.radio-group label {
+ display: inline-block;
+  align-items: center;
+  margin-right: 10px;
+
+}
+
+.radio-group img {
+  max-width: 200px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+a[href="{{ path('app_login') }}"] {
+  display: block;
+  width: 100px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-left: 700px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+a[href="{{ path('app_login') }}"]:hover {
+  background-color: #0069d9;
+}
+.error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+    </style>
+    {% endblock %}
+
+
+
+{% block body %}
+{% include 'backandfront/Front/navbar.html.twig' %}
+
+ 
+
+  <h1>Inscription Utilisateur</h1>
+  {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div>
+           <label for="nom">Votre nom :</label>
+        {{ form_widget(form.nom) }}
+       <div class="error">{{ form_errors(form.nom) }}</div>
+
+    </div>
+    <div>
+        <label for="prenom">Votre prenom :</label>
+        {{ form_widget(form.prenom) }}
+        <div class="error">{{ form_errors(form.prenom) }}</div>
+    </div>
+    <div>
+          <label for="email">Votre adresse email :</label>
+        {{ form_widget(form.email) }}
+        <div class="error">{{ form_errors(form.email) }}</div>
+    
+    </div>
+    <div>
+          <label for="tel">Votre numero de telephone :</label>
+        {{ form_widget(form.tel) }}
+          <div class="error">{{ form_errors(form.tel) }}</div>
+    </div>
+    <div>
+        <label for="adresse">Votre adresse :</label>
+        {{ form_widget(form.adresse) }}
+         <div class="error">{{ form_errors(form.adresse) }}</div>
+    </div>
+    <div>
+      <label for="age">Date de naissance :</label>
+      {{ form_widget(form.age, {'attr': {'id': 'datepicker', 'class': 'form-control', 'type': 'date'}}) }}
+
+        <div class="error">{{ form_errors(form.age) }}</div>
+    </div>
+    <div>
+     <label for="passwd">Mot de passe :</label>
+ 
+        {{ form_widget(form.passwd) }}
+          <div class="error">{{ form_errors(form.passwd) }}</div>
+    </div>
+<div class="radio-group">
+  {{ form_label(form.sexe, null, {'label_attr': {'class': 'radio-label'}}) }}
+  <div>
+    {{ form_widget(form.sexe, {'attr': {'class': 'radio-input'}}) }}
+    
+     <div class="error">{{ form_errors(form.sexe) }}</div>
+     
+  </div></div>
+    <div>
+   {{ form_row(form.image) }}
+      <div class="error">{{ form_errors(form.image) }}</div>
+  
+  </div>
+
+   
+    
+
+
+  {{ form_end(form) }}
+   {% include 'backandfront/Front/footer.html.twig' %}
+{% endblock %}

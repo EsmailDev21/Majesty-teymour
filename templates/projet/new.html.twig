@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Projet{% endblock %}
+
+{% block body %}
+{% include 'backandfront/Front/navbar.html.twig' %}
+    <h1>Create new Projet</h1>
+
+    {{ include('projet/_form.html.twig') }}
+    {% for message in app.flashes ('success') %}
+        <div class="alert alert-success" role="alert">
+            {{message}}
+        </div>
+     {% endfor %}
+    <a href="{{ path('app_projet_index') }}">back to list</a>
+    {% include 'backandfront/Front/footer.html.twig' %}
+{% endblock %}

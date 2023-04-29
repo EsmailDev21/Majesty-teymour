@@ -1,0 +1,33 @@
+{% include 'backandfront/NiceAdmin/navbar.html.twig' %}
+{% block body %}
+     <h1 style="text-align: center;">Projects</h1>
+    <a href="{{ path('app_projet_new') }}">Create new</a>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titreprojet</th>
+                <th>Prixprojet</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for projet in projet %}
+            <tr>
+                <td>{{ projet.titreprojet }}</td>
+                <td>{{ projet.prixprojet }}</td>
+                <td>
+                    <a href="{{ path('app_projet_show', {'idprojet': projet.idprojet}) }}">show</a>
+                    <a href="{{ path('app_projet_edit', {'idprojet': projet.idprojet}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-success" href="{{path('PDFProjet') }}">  PDF </a>
+{% endblock %}
